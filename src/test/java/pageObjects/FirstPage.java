@@ -3,7 +3,6 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 public class FirstPage {
 
@@ -13,12 +12,16 @@ public class FirstPage {
         this.driver = driver;
     }
 
-    public WebElement getSearchField(){
+    private WebElement getSearchField(){
         return driver.findElement(By.xpath("//*[@type='search']"));
     }
 
-    public WebElement getSearchBTN(){
+    private WebElement getSearchBTN(){
         return  driver.findElement(By.xpath("//*[@type='submit']"));
+    }
+
+    public WebElement getHelp(){
+        return driver.findElement(By.xpath("(//*[@class='c-link c-link--current'])[1]"));
     }
 
     public SearchedPage search(String text){
@@ -29,6 +32,10 @@ public class FirstPage {
 
     public void open(String url){
         driver.get(url);
+    }
+    public HelpPage clickHelp(){
+        getHelp().click();
+        return new HelpPage(driver);
     }
 
 }
